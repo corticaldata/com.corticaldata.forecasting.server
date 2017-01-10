@@ -25,7 +25,7 @@ public final class HTMProvider {
 	private static Map<String, Object> classification = new HashMap<String, Object>();
 	private static int count = 0;
 	
-	static void initialize() {
+	public static void initialize() {
 		
 		// Date encoder
 		dateEncoder = DateEncoder

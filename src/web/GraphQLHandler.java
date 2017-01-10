@@ -49,6 +49,7 @@ public class GraphQLHandler {
 			
 			.build();
 	
+	// Queries
 	static GraphQLObjectType queryType = newObject()
 			.name("QueryType")
 			
@@ -76,11 +77,29 @@ public class GraphQLHandler {
 			
 			.build();
 	
+	// Mutations
+	static GraphQLObjectType mutationType = newObject()
+			.name("MutationType")
+			
+			.field(newFieldDefinition()
+					.name("resetMemory")
+					.type(new GraphQLNonNull(GraphQLString))
+					.dataFetcher(new DataFetcher() {
+						@Override
+						public String get(DataFetchingEnvironment environment) {
+							HTMProvider.initialize();
+							return "OK";
+						}
+					}))
+			
+			.build();
+	
 	// Schema
 	public static GraphQLSchema getSchema() {
 		if (schema == null) {
 			schema = GraphQLSchema.newSchema()
 					.query(queryType)
+					.mutation(mutationType)
 					.build();
 		}
 		return schema;

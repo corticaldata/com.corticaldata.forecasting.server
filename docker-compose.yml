@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "443:443"
+      - "9999:9999"
     environment:
       JAVA_OPTS: "-Xms384m -Xmx384m"
     restart: always
