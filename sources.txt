@@ -1,0 +1,5 @@
+src/main/Main.java
+src/providers/config/ConfigProvider.java
+src/services/ExampleService.java
+src/web/GraphQLHandler.java
+src/web/WebHandler.java
