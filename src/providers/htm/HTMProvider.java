@@ -3,6 +3,7 @@ package providers.htm;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import org.joda.time.DateTime;
 import org.numenta.nupic.Parameters;
@@ -104,12 +105,15 @@ public final class HTMProvider {
 		Calendar calendar1 = Calendar.getInstance();
 		Calendar calendar2 = Calendar.getInstance();
 		Calendar calendar3 = Calendar.getInstance();
+		Calendar calendar4 = Calendar.getInstance();
 		calendar1.set(Calendar.HOUR_OF_DAY, 9);
 		calendar2.set(Calendar.HOUR_OF_DAY, 18);
 		calendar3.set(Calendar.HOUR_OF_DAY, 19);
+		calendar4.set(Calendar.HOUR_OF_DAY, 3);
 		long time1 = calendar1.getTimeInMillis();
 		long time2 = calendar2.getTimeInMillis();
 		long time3 = calendar3.getTimeInMillis();
+		long time4 = calendar3.getTimeInMillis();
 		
 		// Training, learning
 		for (int i = 0; i < 500; i++) {
@@ -157,5 +161,59 @@ public final class HTMProvider {
 		forecast(7, time3, true);
 		forecast(8, time3, true);
 		forecast(9, time3, true);
+
+		Random random = new Random();
+		
+		// Dos series distintas
+		for (int i = 0; i < 1000; i++) {
+			if (random.nextBoolean()) {
+				forecast(30, time4, false);
+				forecast(40, time4, false);
+				forecast(50, time4, false);
+			}
+			else {
+				forecast(70, time4, false);
+				forecast(80, time4, false);
+			}
+		}
+		
+		System.out.println("--------------");
+		
+		forecast(70, time4, true);
+		forecast(80, time4, true);
+
+		forecast(30, time4, true);
+		forecast(40, time4, true);
+		forecast(50, time4, true);
+		
+		forecast(70, time4, true);
+		forecast(80, time4, true);
+
+		forecast(70, time4, true);
+		forecast(80, time4, true);
+
+		forecast(30, time4, true);
+		forecast(40, time4, true);
+		forecast(50, time4, true);
+
+		System.out.println("--------------");
+		
+		forecast(1, time1, true);
+		forecast(2, time1, true);
+		forecast(3, time1, true);
+		forecast(4, time1, true);
+		forecast(5, time1, true);
+		forecast(6, time1, true);
+		
+		// ¿Qué pasaría en un tiempo parecido a time2 pero desconocido?
+		forecast(1, time3, true);
+		forecast(2, time3, true);
+		forecast(3, time3, true);
+		forecast(7, time3, true);
+		forecast(8, time3, true);
+		forecast(9, time3, true);
+		
+		
+		
 	}
 }
