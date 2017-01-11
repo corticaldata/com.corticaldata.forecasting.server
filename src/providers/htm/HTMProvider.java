@@ -16,6 +16,8 @@ import org.numenta.nupic.model.ComputeCycle;
 import org.numenta.nupic.model.Connections;
 import org.numenta.nupic.util.ArrayUtils;
 
+import gnu.trove.list.array.TIntArrayList;
+
 public final class HTMProvider {
 	
 	private static SDRClassifier classifier;
@@ -52,8 +54,8 @@ public final class HTMProvider {
 		
 		// Network configuration
 		temporalMemory = new TemporalMemory();
-		classifier = new SDRClassifier();
-		//classifier = new SDRClassifier(new TIntArrayList(new int[] {1}), 0.1, 0.3, 0);
+		//classifier = new SDRClassifier();
+		classifier = new SDRClassifier(new TIntArrayList(new int[] {1}), 0.1, 0.3, 0);
 		memory = new Connections();
 		
 		Parameters parameters = Parameters.getAllDefaultParameters();
@@ -181,21 +183,21 @@ public final class HTMProvider {
 		
 		forecast(70, time4, true);
 		forecast(80, time4, true);
-
+		
 		forecast(30, time4, true);
 		forecast(40, time4, true);
 		forecast(50, time4, true);
 		
 		forecast(70, time4, true);
 		forecast(80, time4, true);
-
+		
 		forecast(70, time4, true);
 		forecast(80, time4, true);
-
+		
 		forecast(30, time4, true);
 		forecast(40, time4, true);
 		forecast(50, time4, true);
-
+		
 		System.out.println("--------------");
 		
 		forecast(1, time1, true);
